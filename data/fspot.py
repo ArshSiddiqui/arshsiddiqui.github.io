@@ -28,4 +28,8 @@ for i in range(0, len(song_names)):
     if i < len(song_names) - 1:
         json_out += ','
 json_out += ']'
-print(json.loads(json_out))
+# out = json_out.replace("'", '"')
+
+f = open("5_short_term_songs.json", "w", encoding='utf8')
+f.write(json_out)
+f.close()
