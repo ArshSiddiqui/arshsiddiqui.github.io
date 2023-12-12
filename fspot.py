@@ -7,10 +7,22 @@ SPOTIFY_CLIENT_SECRET="9eb43eafaaca4f41a901e1fe575cac88"
 SPOTIFY_REFRESH_TOKEN="AQAVCExItC0GIHptQUkloUQO-Sa74b9Oq0hszxwteyRmsSMVh1peimmW4bdLB8P5ISThMW5f9rBPsM1gVZ5EGhZF8xfWWCJTvs8ZK05QmjKTH1HjWq9WkSBDgCkpGCmlscKk4cHDppgq9ANYXCVAaKOLrUeD2kFfWIEhYuSQIFgnkRtJr-9qREeLY3gylN2J9bo8FC23AgD16bHCoatc0ZjWGq-Mh0PssT5F53Ipxk6YRa1tvCSnr7bS0tL7e1yT0huco7uR-YOBsCVEumXq1PtwwhVo"
 
 scope = "user-top-read"
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope=scope,
-client_id="e37ae59bcdd242088e01ebfc07664479",
-client_secret=SPOTIFY_CLIENT_SECRET,
-redirect_uri="http://localhost:3000/callback"))
+
+sp_oauth = auth_manager=SpotifyOAuth(
+    scope=scope,
+    client_id=SPOTIFY_CLIENT_ID,
+    client_secret=SPOTIFY_CLIENT_SECRET,
+    redirect_uri="http://localhost:3000/callback"
+)
+
+# sp = spotipy.Spotify(sp_oauth)
+tok = sp_oauth.get_access_token()
+ref_token = tok['refresh_token']
+
+token_info = sp_oauth.refresh_access_token(ref_token)
+access_token = token_info['access_token']
+
+sp = spotipy.Spotify(auth=access_token)
 
 chansons = sp.current_user_top_tracks(limit=10, time_range='short_term')
 
