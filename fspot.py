@@ -26,8 +26,6 @@ sp = spotipy.Spotify(auth=access_token)
 
 chansons = sp.current_user_top_tracks(limit=10, time_range='short_term')
 
-# print(f"attr {chansons}")
-
 song_names = []
 singer_names = []
 singer_links = []
@@ -48,5 +46,31 @@ for i in range(0, len(song_names)):
 json_out += ']'
 
 f = open("5_short_term_songs.json", "w", encoding='utf8')
+f.write(json_out)
+f.close()
+
+
+chansons = sp.current_user_top_tracks(limit=40, time_range='medium_term')
+
+song_names = []
+singer_names = []
+singer_links = []
+preview_links = []
+song_links = []
+for i in range(0, len(chansons['items'])):
+    song_names.append(chansons['items'][i]['name'])
+    singer_names.append(chansons['items'][i]['album']['artists'][0]['name'])
+    singer_links.append(chansons['items'][i]['album']['artists'][0]['external_urls']['spotify'])
+    preview_links.append(chansons['items'][i]['preview_url'])
+    song_links.append(chansons['items'][i]['external_urls']['spotify'])
+
+json_out = '['
+for i in range(0, len(song_names)):
+    json_out += f'{{"name": "{song_names[i]}", "artist": "{singer_names[i]}", "artist_url": "{singer_links[i]}", "preview_link": "{preview_links[i]}", "song_link": "{song_links[i]}"}}'
+    if i < len(song_names) - 1:
+        json_out += ','
+json_out += ']'
+
+f = open("50_med_term_songs.json", "w", encoding='utf8')
 f.write(json_out)
 f.close()
