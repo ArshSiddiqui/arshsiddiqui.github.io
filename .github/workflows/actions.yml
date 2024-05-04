@@ -3,7 +3,7 @@ name: run fspot.py
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/1 * * * *' # Every two hours
+    - cron: '0 */2 * * *' # Every two hours
 
 jobs:
   build:
