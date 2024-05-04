@@ -58,7 +58,7 @@ json_out += ']'
 
 
 f = open("last_year_scrobble.json", 'w', encoding='utf8')
-f.write(str(response))
+f.write(str(json_out))
 f.close()
 
 res = requests.get(f'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={userName}&api_key={apiKey}&period=overall&limit=25&format=json')
@@ -87,6 +87,6 @@ json_out += ']'
 
 
 f = open("overall_scrobble.json", 'w', encoding='utf8')
-f.write(str(response))
+f.write(str(json_out))
 f.close()
 
