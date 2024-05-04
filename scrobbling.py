@@ -28,7 +28,7 @@ for i in range(0, len(chansons)):
         json_out += ','
 json_out += ']'
 
-f = open("last_week_scrobble.json", 'w', encoding='utf8')
+f = open("past_week_scrobble.json", 'w', encoding='utf8')
 f.write(str(json_out))
 f.close()
 
