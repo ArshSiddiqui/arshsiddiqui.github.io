@@ -4,7 +4,7 @@ import json
 userName = 'arshsiddiqui'
 apiKey = '90874a2969204e8c7da1d789f5e90638'
 
-res = requests.get(f'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={userName}&api_key={apiKey}&format=json')
+res = requests.get(f'http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user={userName}&period=1month&api_key={apiKey}&format=json')
 res.encoding = 'utf-8'
 response = json.loads(res.text.encode('utf-8'))
 
@@ -25,15 +25,15 @@ f = open("top_artists.json", 'w', encoding='utf8')
 f.write(str(json_out))
 f.close()
 
-res = requests.get(f'http://ws.audioscrobbler.com/2.0/?method=user.getweeklyalbumchart&user={userName}&api_key={apiKey}&format=json') 
+res = requests.get(f'http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={userName}&period=1month&api_key={apiKey}&format=json') 
 res.encoding = 'utf-8'
 response = json.loads(res.text.encode('utf-8'))
 
 top_albums = []
 top_albums_url = []
 for i in range(0, 3):
-    top_albums.append(response['weeklyalbumchart']['album'][i]['name'])
-    top_albums_url.append(response['weeklyalbumchart']['album'][i]['url'])
+    top_albums.append(response['topalbums']['album'][i]['name'])
+    top_albums_url.append(response['topalbums']['album'][i]['url'])
 
 json_out = '['
 for i in range(0, 3):
