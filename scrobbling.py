@@ -47,7 +47,7 @@ f.write(str(json_out))
 f.close()
 
 
-res = requests.get(f'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={userName}&api_key={apiKey}&period=7day&limit=10&format=json')
+res = requests.get(f'https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user={userName}&api_key={apiKey}&period=7day&limit=5&format=json')
 res.encoding = 'utf-8'
 response = json.loads(res.text)
 
