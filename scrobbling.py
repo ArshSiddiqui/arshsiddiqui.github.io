@@ -86,7 +86,7 @@ url = []
 artist_url = []
 
 for i in range(0, len(chansons)):
-    song_names.append(chansons[i]['name'])
+    song_names.append(chansons[i]['name'].replace('"',''))
     artist_names.append(chansons[i]['artist']['name'])
     url.append(chansons[i]['url'])
     artist_url.append(chansons[i]['artist']['url'])
@@ -113,7 +113,7 @@ url = []
 artist_url = []
 
 for i in range(0, len(chansons)):
-    song_names.append(chansons[i]['name'])
+    song_names.append(chansons[i]['name'].replace('"',''))
     artist_names.append(chansons[i]['artist']['name'])
     url.append(chansons[i]['url'])
     artist_url.append(chansons[i]['artist']['url'])
@@ -142,7 +142,7 @@ url = []
 artist_url = []
 
 for i in range(0, len(chansons)):
-    song_names.append(chansons[i]['name'])
+    song_names.append(chansons[i]['name'].replace('"',''))
     artist_names.append(chansons[i]['artist']['name'])
     url.append(chansons[i]['url'])
     artist_url.append(chansons[i]['artist']['url'])
